@@ -22,18 +22,19 @@
 				if($row = mysqli_fetch_assoc($result)){
 					$pwdchk = password_verify($pwd, $row['pwd']);
 					if($pwdchk == false){
-						header("Location: ../index.php?err=incrtpwd25");
+						header("Location: ../index.php?err=incrtpwd");
 						exit();
 					}else{
 						session_start();
-						$_SESSION['emailId'] = $row['emailId'];
+						/* $_SESSION['emailId'] = $row['emailId'];
 						$_SESSION['fname'] = $row['fname'];
-						$_SESSION['sname'] = $row['sname'];
+						$_SESSION['sname'] = $row['sname']; */
+						$_SESSION[id] = $row['id'];
 						header("Location: ../index.php?login=success");
 						exit();
 					}
 				}else{
-					header("Location: ../index.php?err=incrtpwd36");
+					header("Location: ../index.php?err=userdne");
 					exit();
 				}
 			}

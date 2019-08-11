@@ -11,17 +11,26 @@
       </li>
 		</ul>
 
-      <?php if(!isset($_SESSION['emailId'])): ?>
+      <?php if(!isset($_SESSION['id'])): ?>
       <form action="./includes/login.inc.php" method="POST" class="form-inline">
-				<input class="form-control mx-1" type="text" name="emailId" placeholder="Username/Email">
-				<input class="form-control mx-1" type="password" name="pwd" placeholder="Password">
+				<div class="form-group">
+          <input class="form-control mx-1" type="text" name="emailId" placeholder="Email" style="<?php echo isset($_GET['err']) ? (($_GET['err']=='userdne' || $_GET['err']=='emptyfields')?'background: #F3E4E0':''): '' ?>">
+          <!-- <?php if(isset($_GET['err']) && $_GET['err']=='userdne'): ?> 
+            <small class="form-text text-muted" style="font-size: 10px;">user dne</small>
+          <?php endif ?> -->
+        </div>
+				<div class="forn-group">
+          <input class="form-control mx-1" type="password" name="pwd" placeholder="Password" style="<?php echo isset($_GET['err']) ? (($_GET['err']=='incrtpwd' || $_GET['err']=='emptyfields')?'background: #F3E4E0':''): '' ?>">  
+          <!-- <?php if(isset($_GET['err']) && $_GET['err']=='incrtpwd'): ?> 
+            <small class="form-text text-muted" style="font-size: 10px;">incorrect password</small>
+          <?php endif ?> -->
+        </div>
 				<button type = "submit mx-1" class="btn btn-primary" name="login-submit">Login</button>
 			</form>
 			<a href="signup.php" class="btn btn-primary mx-1">Sign Up</a>
       <?php endif; ?>
-
-      
-      <?php if(isset($_SESSION['emailId'])): ?>
+    
+      <?php if(isset($_SESSION['id'])): ?>
 			<form action="./includes/logout.inc.php" method="POST" class="form-inline">
 				<button type = "submit" class="btn btn-primary" name="logout-submit">Logout</button>
 			</form>
